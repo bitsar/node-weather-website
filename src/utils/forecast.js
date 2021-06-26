@@ -7,13 +7,14 @@ const forecast = (latitude, longitude, callback) => {
         if (error) {
             callback('Unable to connect to weather services', undefined)
         } else if (body.error) {
-            callback('Cannot find location. Try another search', undefined)
+            callback(body.error.info, undefined)
         } else {
-            callback(undefined, {
-                temperature: 'The current temperature is: ' + body.current.temperature, 
-                feelslike: '. Feels like temperature: ' + body.current.feelslike,
-                description: body.current.weather_descriptions[0],  
-            })
+            callback(
+                undefined,
+                'It is currently: ' + body.current.temperature + ' degrees C. ' +
+                'Conditions are: ' + body.current.weather_descriptions[0] + ' ' +
+                'with ' + body.current.humidity + '% humidity'
+            )
         }
     })
 }
