@@ -10,12 +10,11 @@ const forecast = (latitude, longitude, callback) => {
             callback('Cannot find location. Try another search', undefined)
         } else {
             callback(undefined, {
-                Temperature: 'The current temperature is: ' + body.current.temperature,
-                Feelslike: 'Feels like temperature: ' + body.current.feelslike,
-                Description: body.current.weather_descriptions[0]
+                temperature: 'The current temperature is: ' + body.current.temperature, 
+                feelslike: '. Feels like temperature: ' + body.current.feelslike,
+                description: body.current.weather_descriptions[0],  
             })
         }
     })
 }
-
 module.exports = forecast
